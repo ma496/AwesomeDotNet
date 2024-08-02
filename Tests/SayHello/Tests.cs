@@ -2,12 +2,12 @@ using SayHello;
 
 namespace Tests.SayHello;
 
-public class Tests(App App) : TestBase<App>
+public class Tests(App app) : TestBase<App>
 {
     [Fact, Priority(1)]
     public async Task Invalid_User_Input()
     {
-        var (rsp, res) = await App.Client.POSTAsync<Endpoint, Request, ProblemDetails>(
+        var (rsp, res) = await app.Client.POSTAsync<Endpoint, Request, ProblemDetails>(
                              new()
                              {
                                  FirstName = "x",
@@ -22,7 +22,7 @@ public class Tests(App App) : TestBase<App>
     [Fact, Priority(2)]
     public async Task Valid_User_Input()
     {
-        var (rsp, res) = await App.Client.POSTAsync<Endpoint, Request, Response>(
+        var (rsp, res) = await app.Client.POSTAsync<Endpoint, Request, Response>(
                              new()
                              {
                                  FirstName = "Mike",
